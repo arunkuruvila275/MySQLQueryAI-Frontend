@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function QueryInput({ onResults }) {
+function QueryInput({ onResults, connectionDetails }) {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +16,10 @@ function QueryInput({ onResults }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ natural_language_query: query }),
+        body: JSON.stringify({
+          natural_language_query: query,
+          connection_details: connectionDetails
+        }),
       });
 
       if (!response.ok) {

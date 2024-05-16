@@ -7,9 +7,11 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [sqlQuery, setSqlQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [connectionDetails, setConnectionDetails] = useState(null);
 
-  const handleConnect = () => {
+  const handleConnect = (details) => {
     setIsConnected(true);
+    setConnectionDetails(details);
   };
 
   const handleResults = (query, results) => {
@@ -27,7 +29,7 @@ function App() {
           <ConnectionForm onConnect={handleConnect} />
         ) : (
           <>
-            <QueryInput onResults={handleResults} />
+            <QueryInput onResults={handleResults} connectionDetails={connectionDetails} />
             <QueryResults sqlQuery={sqlQuery} results={results} />
           </>
         )}

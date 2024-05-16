@@ -30,7 +30,7 @@ function ConnectionForm({ onConnect }) {
       const data = await response.json();
 
       if (response.ok) {
-        onConnect();
+        onConnect(connectionDetails);
       } else {
         setError(data.detail);
       }
