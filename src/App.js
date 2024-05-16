@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import QueryInput from './components/QueryInput';
+import QueryResults from './components/QueryResults';
 
 function App() {
+  const [results, setResults] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="bg-blue-500 p-4 text-white text-center">
+        <h1>MySQLQueryAI</h1>
       </header>
+      <main className="p-4">
+        <QueryInput onResults={setResults} />
+        <QueryResults results={results} />
+      </main>
     </div>
   );
 }
