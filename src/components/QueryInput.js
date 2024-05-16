@@ -20,11 +20,12 @@ function QueryInput({ onResults }) {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to execute query');
+        const errorData = await response.json();
+        throw new Error(errorData.detail);
       }
 
       const data = await response.json();
-      onResults(data.result);
+      onResults(data.sql_query, data.result);
     } catch (err) {
       setError(err.message);
     } finally {
