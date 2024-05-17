@@ -22,6 +22,14 @@ function App() {
     setResults(results);
   };
 
+  const handleExplanation = (explanation) => {
+    // Update the input box with the explanation
+    const queryInputElement = document.querySelector('textarea');
+    if (queryInputElement) {
+      queryInputElement.value = explanation;
+    }
+  };
+
   return (
     <div className="App">
       <header className="bg-blue-500 p-4 text-white text-center">
@@ -32,8 +40,16 @@ function App() {
           <ConnectionForm onConnect={handleConnect} />
         ) : (
           <>
-            <QueryInput onGeneratedSql={handleGeneratedSql} connectionDetails={connectionDetails} onExecute={handleResults} />
-            <QueryResults sqlQuery={sqlQuery} results={results} onExecute={handleResults} connectionDetails={connectionDetails} />
+            <QueryInput onGeneratedSql={handleGeneratedSql}
+                        connectionDetails={connectionDetails}
+                        onExecute={handleResults}
+            />
+            <QueryResults sqlQuery={sqlQuery} 
+                          results={results}
+                          onExecute={handleResults}
+                          onExplain={handleExplanation}
+                          connectionDetails={connectionDetails}
+            />
           </>
         )}
       </main>

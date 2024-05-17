@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-function QueryResults({ sqlQuery, results, onExecute, connectionDetails }) {
+function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetails }) {
   const [query, setQuery] = useState(sqlQuery);
-  const [loading, setLoading] = useState(false);
+  const [loadingExecute, setLoadingExecute] = useState(false);
+  const [loadingExplain, setLoadingExplain] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -10,7 +11,7 @@ function QueryResults({ sqlQuery, results, onExecute, connectionDetails }) {
   }, [sqlQuery]);
 
   const handleExecute = async () => {
-    setLoading(true);
+    setLoadingExecute(true);
     setError(null);
 
     try {
@@ -35,23 +36,61 @@ function QueryResults({ sqlQuery, results, onExecute, connectionDetails }) {
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setLoadingExecute(false);
     }
   };
 
+  const handleExplain = async () => {
+    setLoadingExplain(true);
+    setError(null);
+
+    try {
+      const response = await fetch('http://localhost:8000/explain_query/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sql_query: query,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'An error occurred');
+      }
+
+      const data = await response.json();
+      onExplain(data.explanation); // Update the input box with the explanation
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoadingExplain(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+  
   return (
     <div className="mt-10">
       <div className="rounded mb-10">
         <textarea
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleChange}
           placeholder="Generated MySQL query"
           className="w-full p-2 border rounded mb-2"
         ></textarea>
-        <button onClick={handleExecute} className="p-2 bg-blue-500 text-white rounded" disabled={loading}>
-          {loading ? 'Executing...' : 'Execute'}
-        </button>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
+        <div className="flex space-x-4">
+          <button onClick={handleExplain} className="p-2 bg-blue-500 text-white rounded" disabled={loadingExplain}>
+            {loadingExplain ? 'Explaining...' : 'Explain SQL'}
+          </button>
+          <button onClick={handleExecute} className="p-2 bg-green-500 text-white rounded" disabled={loadingExecute}>
+            {loadingExecute ? 'Executing...' : 'Execute'}
+          </button>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+        </div>
       </div>
       <div className="border p-2 rounded">
         { results.length === 0 ? (
