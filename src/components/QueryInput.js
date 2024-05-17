@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function QueryInput({ onResults, connectionDetails }) {
+function QueryInput({ onGeneratedSql, connectionDetails }) {  
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ function QueryInput({ onResults, connectionDetails }) {
       }
 
       const data = await response.json();
-      onResults(data.sql_query, data.result);
+      onGeneratedSql(data.sql_query);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -46,7 +46,7 @@ function QueryInput({ onResults, connectionDetails }) {
           className="w-full p-2 border rounded"
         ></textarea>
         <button type="submit" className="mt-2 p-2 bg-blue-500 text-white rounded" disabled={loading}>
-          {loading ? 'Executing...' : 'Execute'}
+          {loading ? 'Generating...' : 'Generate SQL'}
         </button>
       </form>
       {error && <p className="text-red-500">{error}</p>}

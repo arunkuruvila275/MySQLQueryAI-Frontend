@@ -14,9 +14,12 @@ function App() {
     setConnectionDetails(details);
   };
 
-  const handleResults = (query, results) => {
+  const handleGeneratedSql = (query) => {
     setSqlQuery(query);
-    setResults(Array.isArray(results) ? results : []);
+  };
+
+  const handleResults = (results) => {
+    setResults(results);
   };
 
   return (
@@ -29,8 +32,8 @@ function App() {
           <ConnectionForm onConnect={handleConnect} />
         ) : (
           <>
-            <QueryInput onResults={handleResults} connectionDetails={connectionDetails} />
-            <QueryResults sqlQuery={sqlQuery} results={results} />
+            <QueryInput onGeneratedSql={handleGeneratedSql} connectionDetails={connectionDetails} />
+            <QueryResults sqlQuery={sqlQuery} results={results} onExecute={handleResults} connectionDetails={connectionDetails} />
           </>
         )}
       </main>
