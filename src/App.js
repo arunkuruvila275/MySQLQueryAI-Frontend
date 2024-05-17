@@ -32,7 +32,7 @@ function App() {
           <ConnectionForm onConnect={handleConnect} />
         ) : (
           <>
-            <QueryInput onGeneratedSql={handleGeneratedSql} connectionDetails={connectionDetails} />
+            <QueryInput onGeneratedSql={handleGeneratedSql} connectionDetails={connectionDetails} onExecute={handleResults} />
             <QueryResults sqlQuery={sqlQuery} results={results} onExecute={handleResults} connectionDetails={connectionDetails} />
           </>
         )}
