@@ -84,12 +84,20 @@ mysqlqueryai-frontend/
 5. **Explain SQL**:
     - Click the "Explain Query" button under the generated SQL query to get a natural language explanation of the SQL query.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
 ## Acknowledgments
 
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [OpenAI API](https://beta.openai.com/docs/)
+
+## Screenshots
+
+1. **MySQL Query AI - Database Connection**
+
+![Screenshot of the application](https://github.com/arunkuruvila275/MySQLQueryAI-Frontend/blob/master/pictures/FrontEnd%201.png)
+
+2. **MySQL Query AI - Query Executor**
+
+![Screenshot of the application](https://github.com/arunkuruvila275/MySQLQueryAI-Frontend/blob/master/pictures/FrontEnd%202.png)
+
+
