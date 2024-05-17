@@ -1,70 +1,95 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MySQLQueryAI Frontend
 
-## Available Scripts
+MySQLQueryAI Frontend is a React application that interacts with the MySQLQueryAI Backend to allow users to input natural language queries, generate SQL queries, execute them, and get explanations for SQL queries.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Database Connection**: Input fields to connect to a MySQL database.
+- **Natural Language Querying**: Input field to enter natural language queries.
+- **SQL Generation**: Generate SQL queries from natural language queries.
+- **Query Execution**: Execute SQL queries and display results.
+- **Query Explanation**: Explain SQL queries in natural language.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js
+- npm (Node Package Manager)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/mysqlqueryai-frontend.git
+    cd mysqlqueryai-frontend
+    ```
 
-### `npm run build`
+2. Install the dependencies:
+    ```sh
+    npm install
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Start the React development server:
+    ```sh
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. The application will be available at `http://localhost:3000`.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+mysqlqueryai-frontend/
+│
+├── public/                 # Public assets and the HTML file
+├── src/                    # Source files
+│   ├── components/         # React components
+│   │   ├── ConnectionForm.js     # Form to connect to the database
+│   │   ├── QueryInput.js         # Component to input natural language queries
+│   │   └── QueryResults.js       # Component to display SQL query results and explanations
+│   ├── App.js              # Main App component
+│   ├── index.js            # Entry point for React
+│   └── styles.css          # Custom styles
+├── .gitignore              # Git ignore file
+├── package.json            # npm configuration and dependencies
+└── README.md               # Project documentation
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ConnectionForm
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`ConnectionForm.js` handles the connection to the MySQL database. It includes input fields for the username, password, hostname, and database name.
 
-## Learn More
+### QueryInput
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`QueryInput.js` provides an input field for entering natural language queries and buttons to generate SQL queries and execute them.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### QueryResults
 
-### Code Splitting
+`QueryResults.js` displays the generated SQL query and the results of executing the SQL query. It also provides an option to explain the SQL query in natural language.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Example Workflow
 
-### Analyzing the Bundle Size
+1. **Connect to the Database**:
+    - Enter your database credentials (username, password, hostname, database name) and click "Connect".
+2. **Enter a Natural Language Query**:
+    - Type your query in plain English into the input field.
+3. **Generate SQL**:
+    - Click the "Generate SQL" button to convert the natural language query into an SQL query.
+4. **Execute SQL**:
+    - Click the "Execute" button to run the generated SQL query and view the results.
+5. **Explain SQL**:
+    - Click the "Explain Query" button under the generated SQL query to get a natural language explanation of the SQL query.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Acknowledgments
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [OpenAI API](https://beta.openai.com/docs/)
