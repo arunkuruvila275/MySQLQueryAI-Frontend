@@ -132,7 +132,7 @@ function QueryInput({ onGeneratedSql, connectionDetails, onExecute, explainedQue
         className="p-2 bg-purple-500 text-white rounded mb-4"
         disabled={loadingUpdateModel}
       >
-        {loadingUpdateModel ? 'Update Model with DB Structure' : 'Update Model with DB Structure'}
+        {loadingUpdateModel ? 'Relearn DB Schema' : 'Relearn DB Schema'}
       </button>
       <textarea
         value={query}

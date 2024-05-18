@@ -5,7 +5,18 @@ function ConnectionForm({ onConnect }) {
   const [password, setPassword] = useState('');
   const [hostname, setHostname] = useState('');
   const [database, setDatabase] = useState('');
+  const [enableSSL, setEnableSSL] = useState(false);
   const [error, setError] = useState(null);
+  const [sslMessage, setSslMessage] = useState('');
+
+  const handleEnableSslChange = (e) => {
+    setEnableSSL(e.target.checked);
+    if (e.target.checked) {
+      setSslMessage('Please ensure SSL_CA, SSL_CERT, and SSL_KEY environment variables are set.');
+    } else {
+      setSslMessage('');
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,7 +26,8 @@ function ConnectionForm({ onConnect }) {
       username,
       password,
       hostname,
-      database
+      database,
+      enable_ssl: enableSSL
     };
 
     try {
@@ -81,6 +93,16 @@ function ConnectionForm({ onConnect }) {
           required
         />
       </div>
+      <div className="mb-2">
+        <label className="block text-gray-700">Enable SSL</label>
+        <input
+          type="checkbox"
+          checked={enableSSL}
+          onChange={handleEnableSslChange}
+          className="mr-2 leading-tight"
+        />
+      </div>
+      {sslMessage && <p className="text-yellow-500 mt-2">{sslMessage}</p>}
       <button type="submit" className="mt-2 p-2 bg-blue-500 text-white rounded">
         Connect
       </button>
