@@ -1,0 +1,2 @@
+[console_scripts]
+start-mysqlqueryai-frontend = start_frontend:main

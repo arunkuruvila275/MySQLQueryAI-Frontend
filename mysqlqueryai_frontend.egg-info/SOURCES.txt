@@ -1,0 +1,7 @@
+README.md
+setup.py
+mysqlqueryai_frontend.egg-info/PKG-INFO
+mysqlqueryai_frontend.egg-info/SOURCES.txt
+mysqlqueryai_frontend.egg-info/dependency_links.txt
+mysqlqueryai_frontend.egg-info/entry_points.txt
+mysqlqueryai_frontend.egg-info/top_level.txt
