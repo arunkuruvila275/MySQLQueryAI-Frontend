@@ -31,12 +31,47 @@ MySQLQueryAI Frontend is a React application that interacts with the MySQLQueryA
 
 ## Usage
 
-1. Start the React development server:
+1. **Start the React development server:**
     ```sh
     npm start
     ```
 
-2. The application will be available at `http://localhost:3000`.
+2. **The application will be available at:**
+    - http://localhost:3000
+
+## Example Workflow
+
+1. **Connect to the Database:**
+
+    - Enter the database connection details: Username, Password, Hostname, Database, and Enable SSL (optional).
+    - Click the `Connect` button.
+
+
+2. **Relearn the Model with Database Structure:**
+
+    - Click the `Relearn DB Schema` button to reinform OpenAI about the database structure.
+
+
+3. **Generate SQL Query:**
+
+    - Enter your natural language query in the input box.
+    - Click the `Generate SQL` button to generate the corresponding SQL query.
+
+
+4. **Execute Natural Language Query:**
+
+    - Click the `Execute` button to execute the natural language query on the database.
+
+
+5. **Explain SQL Query:**
+
+    - Click the `Explain SQL` button under the generated SQL query to translate it back to natural language.
+
+  
+6. **Execute SQL Query:**
+
+    - Click the `Execute` button under the generated SQL query to execute the generated SQL query on the database.
+
 
 ## Project Structure
 
@@ -61,7 +96,7 @@ mysqlqueryai-frontend/
 
 ### ConnectionForm
 
-`ConnectionForm.js` handles the connection to the MySQL database. It includes input fields for the username, password, hostname, and database name.
+`ConnectionForm.js` handles the connection to the MySQL database. It includes input fields for the username, password, hostname, database name and enable SSL(optional)
 
 ### QueryInput
 
@@ -71,18 +106,6 @@ mysqlqueryai-frontend/
 
 `QueryResults.js` displays the generated SQL query and the results of executing the SQL query. It also provides an option to explain the SQL query in natural language.
 
-## Example Workflow
-
-1. **Connect to the Database**:
-    - Enter your database credentials (username, password, hostname, database name) and click "Connect".
-2. **Enter a Natural Language Query**:
-    - Type your query in plain English into the input field.
-3. **Generate SQL**:
-    - Click the "Generate SQL" button to convert the natural language query into an SQL query.
-4. **Execute SQL**:
-    - Click the "Execute" button to run the generated SQL query and view the results.
-5. **Explain SQL**:
-    - Click the "Explain Query" button under the generated SQL query to get a natural language explanation of the SQL query.
 
 ## Acknowledgments
 
