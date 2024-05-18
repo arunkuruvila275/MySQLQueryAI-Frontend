@@ -47,25 +47,25 @@ MySQLQueryAI Frontend is a React application that interacts with the MySQLQueryA
     - Click the `Connect` button.
 
 
-2. **Relearn the Model with Database Structure:**
-
-    - Click the `Relearn DB Schema` button to reinform OpenAI about the database structure.
-
-
-3. **Generate SQL Query:**
+2. **Generate SQL Query:**
 
     - Enter your natural language query in the input box.
     - Click the `Generate SQL` button to generate the corresponding SQL query.
 
 
-4. **Execute SQL Query:**
+3. **Execute SQL Query:**
 
     - Click the `Execute` button to execute the SQL query on the database.
 
 
-5. **Explain SQL Query:**
+4. **Explain SQL Query:**
 
     - Click the `Explain SQL` button under the generated SQL query to translate it back to natural language.
+
+
+5. **Relearn the Model with Database Structure:**
+
+    - Click the `Relearn DB Schema` button to reinform OpenAI about the database structure after any changes are made. 
 
 
 ## Project Structure
