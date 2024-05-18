@@ -7,6 +7,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [sqlQuery, setSqlQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [executeMessage, setExecuteMessage] = useState(null);
   const [connectionDetails, setConnectionDetails] = useState(null);
 
   const handleConnect = (details) => {
@@ -18,8 +19,9 @@ function App() {
     setSqlQuery(query);
   };
 
-  const handleResults = (results) => {
+  const handleResults = (results, message) => {
     setResults(results);
+    setExecuteMessage(message);
   };
 
   const handleExplanation = (explanation) => {
@@ -49,6 +51,7 @@ function App() {
                           onExecute={handleResults}
                           onExplain={handleExplanation}
                           connectionDetails={connectionDetails}
+                          executeMessage={executeMessage} // Pass the execute message to QueryResults
             />
           </>
         )}

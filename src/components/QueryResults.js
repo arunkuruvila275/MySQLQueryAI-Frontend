@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetails }) {
+function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetails, executeMessage }) {
   const [query, setQuery] = useState(sqlQuery);
   const [loadingExecute, setLoadingExecute] = useState(false);
   const [loadingExplain, setLoadingExplain] = useState(false);
@@ -32,7 +32,14 @@ function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetai
       }
 
       const data = await response.json();
-      onExecute(data.result);
+      console.log("Execute Query Response:", data); // Debugging line
+      if (data.message) {
+        onExecute([], data.message); // Clear the results
+      } else if (Array.isArray(data.result)) {
+        onExecute(data.result, null);
+      } else {
+        throw new Error('Unexpected result format');
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -93,13 +100,15 @@ function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetai
         </div>
       </div>
       <div className="border p-2 rounded">
-        { results.length === 0 ? (
-          <p className="text-gray-400">Query result</p>
-        ) : (
+        {executeMessage ? (
+          <p>{executeMessage}</p>
+        ) : Array.isArray(results) && results.length === 0 ? (
+          <p className="text-gray-400">Query results</p>
+        ) : Array.isArray(results) && results.length > 0 ? (
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                {results[0] && Object.keys(results[0]).map((key) => (
+                {Object.keys(results[0]).map((key) => (
                   <th key={key} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {key}
                   </th>
@@ -118,6 +127,8 @@ function QueryResults({ sqlQuery, results, onExecute, onExplain, connectionDetai
               ))}
             </tbody>
           </table>
+        ) : (
+          <p className="text-red-500">Error: Unexpected result format</p>
         )}
       </div>
     </div>

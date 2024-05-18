@@ -79,7 +79,11 @@ function QueryInput({ onGeneratedSql, connectionDetails, onExecute }) {
       }
 
       const executeData = await executeResponse.json();
-      onExecute(executeData.result); // Update results by calling the onExecute function passed from the parent component
+      if (executeData.message) {
+        onExecute([], executeData.message); // Update the results and the message
+      } else {
+        onExecute(executeData.result, null); // Update the results and clear the message
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -121,7 +125,7 @@ function QueryInput({ onGeneratedSql, connectionDetails, onExecute }) {
         className="p-2 bg-purple-500 text-white rounded mb-4"
         disabled={loadingUpdateModel}
       >
-        {loadingUpdateModel ? 'Updating...' : 'Update Model with DB Structure'}
+        {loadingUpdateModel ? 'Update Model with DB Structure' : 'Update Model with DB Structure'}
       </button>
       <textarea
         value={query}
