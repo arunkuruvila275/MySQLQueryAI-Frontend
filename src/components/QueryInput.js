@@ -4,6 +4,7 @@ function QueryInput({ onGeneratedSql, connectionDetails, onExecute }) {
   const [query, setQuery] = useState('');
   const [loadingGenerate, setLoadingGenerate] = useState(false);
   const [loadingExecute, setLoadingExecute] = useState(false);
+  const [loadingUpdateModel, setLoadingUpdateModel] = useState(false);
   const [error, setError] = useState(null);
 
   const handleGenerateSQL = async () => {
@@ -86,8 +87,42 @@ function QueryInput({ onGeneratedSql, connectionDetails, onExecute }) {
     }
   };
 
+  const handleUpdateModel = async () => {
+    setLoadingUpdateModel(true);
+    setError(null);
+
+    try {
+      const response = await fetch('http://localhost:8000/update_model/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(connectionDetails),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'An error occurred');
+      }
+
+      // No need to handle the response data if no message is required on success
+      await response.json();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoadingUpdateModel(false);
+    }
+  };
+
   return (
     <div className="mt-4">
+      <button
+        onClick={handleUpdateModel}
+        className="p-2 bg-purple-500 text-white rounded mb-4"
+        disabled={loadingUpdateModel}
+      >
+        {loadingUpdateModel ? 'Updating...' : 'Update Model with DB Structure'}
+      </button>
       <textarea
         value={query}
         onChange={(e) => setQuery(e.target.value)}
