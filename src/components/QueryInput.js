@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function QueryInput({ onGeneratedSql, connectionDetails, onExecute }) {
+function QueryInput({ onGeneratedSql, connectionDetails, onExecute, explainedQuery }) {
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    if (explainedQuery) {
+      setQuery(explainedQuery);
+    }
+  }, [explainedQuery]);
+
   const [loadingGenerate, setLoadingGenerate] = useState(false);
   const [loadingExecute, setLoadingExecute] = useState(false);
   const [loadingUpdateModel, setLoadingUpdateModel] = useState(false);

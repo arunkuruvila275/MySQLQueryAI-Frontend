@@ -8,6 +8,7 @@ function App() {
   const [sqlQuery, setSqlQuery] = useState('');
   const [results, setResults] = useState([]);
   const [executeMessage, setExecuteMessage] = useState(null);
+  const [explainedQuery, setExplainedQuery] = useState('');
   const [connectionDetails, setConnectionDetails] = useState(null);
 
   const handleConnect = (details) => {
@@ -25,11 +26,7 @@ function App() {
   };
 
   const handleExplanation = (explanation) => {
-    // Update the input box with the explanation
-    const queryInputElement = document.querySelector('textarea');
-    if (queryInputElement) {
-      queryInputElement.value = explanation;
-    }
+    setExplainedQuery(explanation);
   };
 
   return (
@@ -45,13 +42,14 @@ function App() {
             <QueryInput onGeneratedSql={handleGeneratedSql}
                         connectionDetails={connectionDetails}
                         onExecute={handleResults}
+                        explainedQuery={explainedQuery}
             />
             <QueryResults sqlQuery={sqlQuery} 
                           results={results}
                           onExecute={handleResults}
                           onExplain={handleExplanation}
                           connectionDetails={connectionDetails}
-                          executeMessage={executeMessage} // Pass the execute message to QueryResults
+                          executeMessage={executeMessage}
             />
           </>
         )}
