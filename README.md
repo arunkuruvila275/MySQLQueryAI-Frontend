@@ -58,19 +58,14 @@ MySQLQueryAI Frontend is a React application that interacts with the MySQLQueryA
     - Click the `Generate SQL` button to generate the corresponding SQL query.
 
 
-4. **Execute Natural Language Query:**
+4. **Execute SQL Query:**
 
-    - Click the `Execute` button to execute the natural language query on the database.
+    - Click the `Execute` button to execute the SQL query on the database.
 
 
 5. **Explain SQL Query:**
 
     - Click the `Explain SQL` button under the generated SQL query to translate it back to natural language.
-
-  
-6. **Execute SQL Query:**
-
-    - Click the `Execute` button under the generated SQL query to execute the generated SQL query on the database.
 
 
 ## Project Structure
